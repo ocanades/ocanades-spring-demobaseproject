@@ -1,17 +1,21 @@
 package com.ocanades.demo.controllers;
 
+import com.ocanades.demo.dtos.UserDto;
 import com.ocanades.demo.entities.User;
+import com.ocanades.demo.exceptions.UserException;
+import com.ocanades.demo.mappers.UserMapper;
 import com.ocanades.demo.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.Mapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
@@ -20,15 +24,40 @@ import java.util.NoSuchElementException;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         try {
-            List<User> users = userService.getAllUsers();
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } catch(NoSuchElementException e) {
-            log.warn("There are no users in the database");
-           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            List<UserDto> usersDto = new ArrayList<>();
+            userService.getAllUsers().forEach(user -> usersDto.add(userMapper.convertToDto(user)));
+            return new ResponseEntity<>(usersDto, HttpStatus.OK);
+        } catch (UserException e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable String id) {
+        try {
+            UserDto userDto = userMapper.convertToDto(userService.getUserById(id));
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
+        } catch (UserException e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addUser(@Valid @RequestBody UserDto userDto) {
+        try {
+            User user = userMapper.convertToEntity(userDto);
+            userService.addUser(user);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (UserException e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
