@@ -1,14 +1,12 @@
-package com.ocanades.demo.controllers;
+package com.ocanades.demo.application.controllers;
 
-import com.ocanades.demo.dtos.UserDto;
-import com.ocanades.demo.entities.User;
-import com.ocanades.demo.exceptions.UserException;
-import com.ocanades.demo.mappers.UserMapper;
-import com.ocanades.demo.services.UserService;
+import com.ocanades.demo.application.dtos.UserDto;
+import com.ocanades.demo.domain.entities.User;
+import com.ocanades.demo.domain.exceptions.UserException;
+import com.ocanades.demo.application.mappers.UserMapper;
+import com.ocanades.demo.domain.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.Mapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

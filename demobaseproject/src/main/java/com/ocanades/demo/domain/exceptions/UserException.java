@@ -1,4 +1,4 @@
-package com.ocanades.demo.exceptions;
+package com.ocanades.demo.domain.exceptions;
 
 public class UserException extends Exception {
 

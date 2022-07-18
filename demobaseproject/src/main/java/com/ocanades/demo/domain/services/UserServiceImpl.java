@@ -1,9 +1,8 @@
-package com.ocanades.demo.services;
+package com.ocanades.demo.domain.services;
 
-import com.ocanades.demo.entities.User;
-import com.ocanades.demo.exceptions.UserException;
-import com.ocanades.demo.repositories.UserRepository;
-import lombok.RequiredArgsConstructor;
+import com.ocanades.demo.domain.entities.User;
+import com.ocanades.demo.domain.exceptions.UserException;
+import com.ocanades.demo.domain.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +10,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    public UserServiceImpl(final UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<User> getAllUsers() throws UserException {

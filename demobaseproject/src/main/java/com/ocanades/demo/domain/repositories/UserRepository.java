@@ -1,6 +1,6 @@
-package com.ocanades.demo.repositories;
+package com.ocanades.demo.domain.repositories;
 
-import com.ocanades.demo.entities.User;
+import com.ocanades.demo.domain.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

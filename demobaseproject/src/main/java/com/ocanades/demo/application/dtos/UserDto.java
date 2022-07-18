@@ -1,4 +1,4 @@
-package com.ocanades.demo.dtos;
+package com.ocanades.demo.application.dtos;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;

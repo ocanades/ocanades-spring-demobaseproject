@@ -1,7 +1,7 @@
-package com.ocanades.demo.services;
+package com.ocanades.demo.domain.services;
 
-import com.ocanades.demo.entities.User;
-import com.ocanades.demo.exceptions.UserException;
+import com.ocanades.demo.domain.entities.User;
+import com.ocanades.demo.domain.exceptions.UserException;
 
 import java.util.List;
 

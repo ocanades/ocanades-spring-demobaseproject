@@ -1,4 +1,4 @@
-package com.ocanades.demo.entities;
+package com.ocanades.demo.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

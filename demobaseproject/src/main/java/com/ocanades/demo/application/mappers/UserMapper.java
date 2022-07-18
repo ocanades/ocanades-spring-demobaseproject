@@ -1,7 +1,7 @@
-package com.ocanades.demo.mappers;
+package com.ocanades.demo.application.mappers;
 
-import com.ocanades.demo.dtos.UserDto;
-import com.ocanades.demo.entities.User;
+import com.ocanades.demo.application.dtos.UserDto;
+import com.ocanades.demo.domain.entities.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
