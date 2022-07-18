@@ -6,7 +6,7 @@ v.1.0.0
 - New User, UserRepository, UserController, and UserService.
 - New basic database data with 4 users.
 - New application configuration file.
-- Added the information of the project.
+- Added the information about the project.
 
 v.1.1.0
 =======
@@ -20,4 +20,4 @@ v.1.1.0
 - Changed User (log id  to String UUID)
 - Changed UserRepository (changed Long to String)
 - Changed UserService and UserServiceImpl (modified Long to UUID)
-- Changed data.sql (new statement create table if not exists)
+- Changed data.sql (new statement create table if not exist)
